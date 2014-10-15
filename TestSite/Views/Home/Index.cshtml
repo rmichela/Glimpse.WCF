@@ -1,0 +1,31 @@
+﻿<script>
+    var f = function() {
+        $.ajax({
+            'url': '/api/values',
+            'success': function(data) {
+                data.forEach(function(item) {
+                    var list = $('#list');
+                    list.append('<li>' + item + '</li>');
+                });
+            }
+        });
+    }     
+</script>
+<div id="body">
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>OMG Button!</h1>
+                <h2>Click it. Click the button. You know you want to.</h2>
+            </hgroup>
+        </div>
+    </section>
+    <section class="content-wrapper main-content clear-fix">
+        <form>
+            <input type="button" value="Click Me" onclick="f()"/>
+        </form>
+        <ul id="list">
+            
+        </ul>
+    </section>
+</div>
