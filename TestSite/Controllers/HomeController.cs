@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.Threading;
 using System.Web.Mvc;
 
 namespace TestSite.Controllers
@@ -10,6 +8,7 @@ namespace TestSite.Controllers
     {
         public ActionResult Index()
         {
+            Thread.Sleep(new Random().Next(3000));
             return View();
         }
     }

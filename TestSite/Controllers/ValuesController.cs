@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+using System.Threading;
 using System.Web.Http;
 
 namespace TestSite.Controllers
@@ -13,6 +11,7 @@ namespace TestSite.Controllers
         public IEnumerable<string> Get()
         {
             var r = new Random();
+            Thread.Sleep(r.Next(3000));
             return new[] { r.Next().ToString(), r.Next().ToString(), r.Next().ToString() };
         }
 
@@ -20,6 +19,7 @@ namespace TestSite.Controllers
         public string Get(int id)
         {
             var r = new Random(id);
+            Thread.Sleep(r.Next(3000));
             return r.Next().ToString();
         }
     }
