@@ -310,6 +310,12 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\SimpleService\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Glimpse.WCF\Glimpse.WCF.csproj">
+      <Project>{bb0ef180-3d8e-4104-a71b-31fda185fbd7}</Project>
+      <Name>Glimpse.WCF</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -1,6 +1,6 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 using System.Web.Mvc;
+using Glimpse.WCF;
 using TestSite.SimpleService;
 
 namespace TestSite.Controllers
@@ -9,7 +9,12 @@ namespace TestSite.Controllers
     {
         public ActionResult Index()
         {
-            Thread.Sleep(new Random().Next(2000));
+            TimeWaster.StartMasterWaste();
+            var waster = new TimeWaster();
+            waster.WasteTime();
+            Thread.Sleep(500);
+            waster.WasteTime();
+            TimeWaster.EndMasterWaste();
 
             using (var client = new SimpleServiceClient())
             {
