@@ -34,7 +34,11 @@
       <HintPath>..\packages\Glimpse.1.8.6\lib\net45\Glimpse.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Channels" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,10 +46,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GlimpseWcfDispatchMessageInspector.cs" />
+    <Compile Include="GlimpseWcfEndpointBehavior.cs" />
+    <Compile Include="GlimpseWcfMessageHeader.cs" />
+    <Compile Include="GlimpseWcfClientMessageInspector.cs" />
+    <Compile Include="GlimpseWcfContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TimeWasteCategoryItem.cs" />
-    <Compile Include="TimeWasteMessage.cs" />
-    <Compile Include="TimeWaster.cs" />
+    <Compile Include="WcfTimelineMessage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
