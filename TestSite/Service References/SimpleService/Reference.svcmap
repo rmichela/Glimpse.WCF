@@ -19,13 +19,13 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:52269/WCF/SimpleService.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost/GlimpseWcf/WCF/SimpleService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="SimpleService.wsdl" MetadataType="Wsdl" ID="0e16874c-44fb-491f-b81d-9c7f850f6ec7" SourceId="1" SourceUrl="http://localhost:52269/WCF/SimpleService.svc?wsdl" />
-    <MetadataFile FileName="SimpleService.xsd" MetadataType="Schema" ID="f523ddbc-4114-40cd-a660-b5d3ddb61ea9" SourceId="1" SourceUrl="http://localhost:52269/WCF/SimpleService.svc?xsd=xsd0" />
-    <MetadataFile FileName="SimpleService1.xsd" MetadataType="Schema" ID="409b5188-1069-46f0-abcb-9e37176d3b9f" SourceId="1" SourceUrl="http://localhost:52269/WCF/SimpleService.svc?xsd=xsd1" />
-    <MetadataFile FileName="SimpleService.disco" MetadataType="Disco" ID="9183594e-047b-45e0-9ca7-87edb1dce601" SourceId="1" SourceUrl="http://localhost:52269/WCF/SimpleService.svc?disco" />
+    <MetadataFile FileName="SimpleService2.xsd" MetadataType="Schema" ID="d203a0d1-8212-4342-8dfa-c776ed7805df" SourceId="1" SourceUrl="http://localhost/GlimpseWcf/WCF/SimpleService.svc?xsd=xsd0" />
+    <MetadataFile FileName="SimpleService21.xsd" MetadataType="Schema" ID="849402d7-022b-4e24-b0c4-6155b81e4dc3" SourceId="1" SourceUrl="http://localhost/GlimpseWcf/WCF/SimpleService.svc?xsd=xsd1" />
+    <MetadataFile FileName="SimpleService1.wsdl" MetadataType="Wsdl" ID="977557b0-34b6-4fdb-a52b-297fae462222" SourceId="1" SourceUrl="http://localhost/GlimpseWcf/WCF/SimpleService.svc?wsdl" />
+    <MetadataFile FileName="SimpleService1.disco" MetadataType="Disco" ID="277c1cf7-eda4-4ce6-b89f-c0be05bb639d" SourceId="1" SourceUrl="http://localhost/GlimpseWcf/WCF/SimpleService.svc?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

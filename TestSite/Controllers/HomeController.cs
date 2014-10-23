@@ -1,5 +1,6 @@
-﻿using System.Web.Mvc;
-using TestSite.SimpleService;
+﻿using System.Linq;
+using System.Web.Mvc;
+using TestSite.CompositeService;
 
 namespace TestSite.Controllers
 {
@@ -7,9 +8,9 @@ namespace TestSite.Controllers
     {
         public ActionResult Index()
         {
-            using (var client = new SimpleServiceClient())
+            using (var client = new CompositeServiceClient())
             {
-                ViewData["number"] = client.DoWork().ToString();
+                ViewData["number"] = string.Join( ", ", client.DoWork());
             }
             return View();
         }
