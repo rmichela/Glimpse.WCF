@@ -8,7 +8,6 @@ namespace TestSite.WCF
         public int DoWork()
         {
             var r = new Random();
-            Thread.Sleep(r.Next(2000));
             return r.Next();
         }
     }

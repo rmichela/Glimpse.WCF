@@ -214,7 +214,6 @@
     <Content Include="Scripts\knockout-3.2.0.debug.js" />
     <Content Include="Scripts\knockout-3.2.0.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <None Include="Service References\CompositeService\CompositeService.wsdl" />
     <None Include="Service References\CompositeService\CompositeService.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -224,6 +223,7 @@
     <None Include="Service References\CompositeService\CompositeService2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\CompositeService\SimpleService.wsdl" />
     <None Include="Service References\SimpleService\configuration91.svcinfo" />
     <None Include="Service References\SimpleService\configuration.svcinfo" />
     <None Include="Service References\SimpleService\Reference.svcmap">
