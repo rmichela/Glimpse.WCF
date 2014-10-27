@@ -1,21 +1,22 @@
 ﻿using System;
 using System.Threading;
+using System.Threading.Tasks;
 using TestSite.SimpleService;
 
 namespace TestSite.WCF
 {
     public class CompositeService : ICompositeService
     {
-        public int[] DoWork()
+        public async Task<int[]> DoWork()
         {
             using (var client = new SimpleServiceClient())
             {
-                return new int[]
+                return (new int[]
                     {
-                        client.DoWork(),
-                        client.DoWork(),
-                        client.DoWork()
-                    };
+                        await client.DoWorkAsync(),
+                        await client.DoWorkAsync(),
+                        await client.DoWorkAsync()
+                    });
             }
         }
     }

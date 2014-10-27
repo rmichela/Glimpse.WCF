@@ -1,4 +1,5 @@
 ﻿using System.ServiceModel;
+using System.Threading.Tasks;
 
 namespace TestSite.WCF
 {
@@ -6,6 +7,6 @@ namespace TestSite.WCF
     public interface ICompositeService
     {
         [OperationContract]
-        int[] DoWork();
+        Task<int[]> DoWork();
     }
 }
