@@ -6,14 +6,16 @@ using System.ServiceModel.Dispatcher;
 using Glimpse.Core.Extensibility;
 using Glimpse.Core.Framework;
 using Glimpse.Core.Message;
+using Glimpse.WCF.Message;
 
 namespace Glimpse.WCF
 {
-    internal class GlimpseWcfClientMessageInspector : IClientMessageInspector
+    // CLIENT SIDE
+    public class GlimpseWcfClientMessageInspector : IClientMessageInspector
     {
-        private readonly ConcurrentDictionary<Guid, TimeSpan> _knownOffsets = new ConcurrentDictionary<Guid, TimeSpan>(); 
+        private readonly ConcurrentDictionary<Guid, TimeSpan> _knownOffsets = new ConcurrentDictionary<Guid, TimeSpan>();
 
-        public object BeforeSendRequest(ref Message request, IClientChannel channel)
+        public object BeforeSendRequest(ref System.ServiceModel.Channels.Message request, IClientChannel channel)
         {
             IExecutionTimer timer = GlimpseConfiguration.GetConfiguredTimerStrategy()();
             TimeSpan offset = timer.Start();
@@ -26,7 +28,7 @@ namespace Glimpse.WCF
             return correlationState;
         }
 
-        public void AfterReceiveReply(ref Message reply, object correlationState)
+        public void AfterReceiveReply(ref System.ServiceModel.Channels.Message reply, object correlationState)
         {
             // Time this call
             IExecutionTimer timer = GlimpseConfiguration.GetConfiguredTimerStrategy()();
@@ -36,19 +38,19 @@ namespace Glimpse.WCF
                 throw new InvalidOperationException();
             }
 
-            var message = new WcfTimelineMessage
-            {
-                EventName = "Some Service"
-            }.AsTimedMessage(timer.Stop(offset));
+            var message = new WcfTimelineMessage()
+                .AsTimedMessage(timer.Stop(offset))
+                // TODO: Fix service name
+                .AsTimelineMessage("Some WCF Service", WcfTimelineMessage.Category);
 
             // Publish this request's timeline message
             IMessageBroker broker = GlimpseConfiguration.GetConfiguredMessageBroker();
             broker.Publish(message);
-            GlimpseWcfContext.Current.AccumulateMessage(message);
+            GlimpseWcfContext.Current.AccumulateMessage( message);
 
             // Publish any timeline messages the service is reporting
             var glimpseWcfHeader = reply.Headers.GetHeader<GlimpseWcfMessageHeader>(GlimpseWcfMessageHeader.Name, GlimpseWcfMessageHeader.Namespace);
-            foreach (var headerMessage in glimpseWcfHeader.CalledServiceTimes)
+            foreach (IMessage headerMessage in glimpseWcfHeader.CalledServiceTimes)
             {
                 broker.Publish(headerMessage);
                 GlimpseWcfContext.Current.AccumulateMessage(headerMessage);

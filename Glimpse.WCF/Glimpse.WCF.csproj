@@ -46,17 +46,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensibility\GlimpseWcfConfigShim.cs" />
+    <Compile Include="Extensibility\RelativeExecutionTimer.cs" />
     <Compile Include="GlimpseWcfDispatchMessageInspector.cs" />
     <Compile Include="GlimpseWcfEndpointBehavior.cs" />
+    <Compile Include="Extensibility\GlimpseWcfMessageBroker.cs" />
     <Compile Include="GlimpseWcfMessageHeader.cs" />
     <Compile Include="GlimpseWcfClientMessageInspector.cs" />
     <Compile Include="GlimpseWcfContext.cs" />
+    <Compile Include="Message\SerializableTimedMessage.cs" />
+    <Compile Include="Message\SerializableTimelineMessage.cs" />
+    <Compile Include="Message\SerializableTraceMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WcfTimelineMessage.cs" />
+    <Compile Include="Message\WcfTimelineMessage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

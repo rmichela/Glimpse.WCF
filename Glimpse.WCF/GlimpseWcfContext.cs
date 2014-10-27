@@ -3,51 +3,76 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
+using Glimpse.Core.Message;
+using Glimpse.WCF.Extensibility;
+using Glimpse.WCF.Message;
 
 namespace Glimpse.WCF
 {
     [Serializable]
+    [KnownType(typeof(SerializableTimedMessage))]
+    [KnownType(typeof(SerializableTimelineMessage))]
+    [KnownType(typeof(SerializableTraceMessage))]    
     internal class GlimpseWcfContext : ISerializable
     {
-        private const string CallContextSlotName = "Glimpse.WCF.GlimpseWcfContext";
+        private const string CALL_CONTEXT_SLOT_NAME = "Glimpse.WCF.GlimpseWcfContext";
 
-        private readonly SynchronizedCollection<WcfTimelineMessage> _accumulatedMessages;
+        private readonly SynchronizedCollection<Glimpse.Core.Message.IMessage> _accumulatedIMessages;
+        private readonly SynchronizedCollection<Glimpse.Core.Message.ITraceMessage> _accumulatedITraceMessages;
+        private readonly RelativeExecutionTimer _sessionTimer;
 
         private GlimpseWcfContext()
         {
-            _accumulatedMessages = new SynchronizedCollection<WcfTimelineMessage>();
+            _accumulatedIMessages = new SynchronizedCollection<Glimpse.Core.Message.IMessage>();
+            _accumulatedITraceMessages = new SynchronizedCollection<ITraceMessage>();
         }
 
         // Deserialization constructor
+
         private GlimpseWcfContext(SerializationInfo info, StreamingContext context)
         {
-            _accumulatedMessages = (SynchronizedCollection<WcfTimelineMessage>)info.GetValue("_accumulatedMessages", typeof(SynchronizedCollection<WcfTimelineMessage>));
+            _accumulatedIMessages = (SynchronizedCollection<Glimpse.Core.Message.IMessage>)info.GetValue("_accumulatedIMessages", typeof(SynchronizedCollection<Glimpse.Core.Message.IMessage>));
+            _accumulatedITraceMessages = (SynchronizedCollection<Glimpse.Core.Message.ITraceMessage>)info.GetValue("_accumulatedITraceMessages", typeof(SynchronizedCollection<Glimpse.Core.Message.ITraceMessage>));
+            _sessionTimer = (RelativeExecutionTimer) info.GetValue("_sessionTimer", typeof (RelativeExecutionTimer));
         }
 
         public static GlimpseWcfContext Current
         {
             get
             {
-                var context = CallContext.LogicalGetData(CallContextSlotName) as GlimpseWcfContext;
+                var context = CallContext.LogicalGetData(CALL_CONTEXT_SLOT_NAME) as GlimpseWcfContext;
                 if (context == null)
                 {
                     context = new GlimpseWcfContext();
-                    CallContext.LogicalSetData(CallContextSlotName, context);
+                    CallContext.LogicalSetData(CALL_CONTEXT_SLOT_NAME, context);
                 }
                 return context;
             }
         }
 
-        public WcfTimelineMessage[] AccumulateMessages
+        public RelativeExecutionTimer SessionTimer
         {
-            get { return _accumulatedMessages.ToArray(); }
+            get { return _sessionTimer; }
         }
 
-        public void AccumulateMessage(WcfTimelineMessage message)
+        public Glimpse.Core.Message.IMessage[] AccumulatedIMessages
         {
-            _accumulatedMessages.Add(message);
+            get { return _accumulatedIMessages.ToArray(); }
+        }
+
+        public Glimpse.Core.Message.ITraceMessage[] AccumulatedITraceMessages
+        {
+            get { return _accumulatedITraceMessages.ToArray(); }
+        }
+
+        public void AccumulateMessage(Glimpse.Core.Message.IMessage message)
+        {
+            _accumulatedIMessages.Add(message);
+        }
+
+        public void AccumulateMessage(Glimpse.Core.Message.ITraceMessage message)
+        {
+            _accumulatedITraceMessages.Add(message);
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
@@ -59,7 +84,9 @@ namespace Glimpse.WCF
             }
             else
             {
-                info.AddValue("_accumulatedMessages", _accumulatedMessages);
+                info.AddValue("_accumulatedIMessages", _accumulatedIMessages);
+                info.AddValue("_accumulatedITraceMessages", _accumulatedITraceMessages);
+                info.AddValue("_sessionTimer", _sessionTimer);
             }
         }
     }

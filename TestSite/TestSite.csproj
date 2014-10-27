@@ -230,7 +230,6 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Service References\SimpleService\SimpleService1.disco" />
     <None Include="Service References\CompositeService\CompositeService.disco" />
     <None Include="Service References\CompositeService\configuration91.svcinfo" />
     <None Include="Service References\CompositeService\configuration.svcinfo" />
@@ -267,13 +266,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <None Include="Service References\SimpleService\SimpleService1.wsdl" />
-    <None Include="Service References\SimpleService\SimpleService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\SimpleService\SimpleService21.xsd">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
