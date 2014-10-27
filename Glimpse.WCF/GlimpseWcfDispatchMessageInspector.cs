@@ -19,7 +19,8 @@ namespace Glimpse.WCF
             // Attach any accumulated timeline messages to the response header
             var header = new GlimpseWcfMessageHeader
             {
-                CalledServiceTimes = GlimpseWcfContext.Current.AccumulatedIMessages
+                CollectedITimedMessages = GlimpseWcfContext.Current.AccumulatedITimedMessages,
+                CollectedITraceMessages = GlimpseWcfContext.Current.AccumulatedITraceMessages
             };
             reply.Headers.Add(MessageHeader.CreateHeader(GlimpseWcfMessageHeader.Name, GlimpseWcfMessageHeader.Namespace, header));
         }

@@ -17,22 +17,22 @@ namespace Glimpse.WCF
     {
         private const string CALL_CONTEXT_SLOT_NAME = "Glimpse.WCF.GlimpseWcfContext";
 
-        private readonly SynchronizedCollection<Glimpse.Core.Message.IMessage> _accumulatedIMessages;
-        private readonly SynchronizedCollection<Glimpse.Core.Message.ITraceMessage> _accumulatedITraceMessages;
+        private readonly SynchronizedCollection<ITimedMessage> _accumulatedITimedMessages;
+        private readonly SynchronizedCollection<ITraceMessage> _accumulatedITraceMessages;
         private readonly RelativeExecutionTimer _sessionTimer;
 
         private GlimpseWcfContext()
         {
-            _accumulatedIMessages = new SynchronizedCollection<Glimpse.Core.Message.IMessage>();
+            _accumulatedITimedMessages = new SynchronizedCollection<ITimedMessage>();
             _accumulatedITraceMessages = new SynchronizedCollection<ITraceMessage>();
+            _sessionTimer = new RelativeExecutionTimer();
         }
 
         // Deserialization constructor
-
         private GlimpseWcfContext(SerializationInfo info, StreamingContext context)
         {
-            _accumulatedIMessages = (SynchronizedCollection<Glimpse.Core.Message.IMessage>)info.GetValue("_accumulatedIMessages", typeof(SynchronizedCollection<Glimpse.Core.Message.IMessage>));
-            _accumulatedITraceMessages = (SynchronizedCollection<Glimpse.Core.Message.ITraceMessage>)info.GetValue("_accumulatedITraceMessages", typeof(SynchronizedCollection<Glimpse.Core.Message.ITraceMessage>));
+            _accumulatedITimedMessages = (SynchronizedCollection<ITimedMessage>)info.GetValue("_accumulatedITimedMessages", typeof(SynchronizedCollection<ITimedMessage>));
+            _accumulatedITraceMessages = (SynchronizedCollection<ITraceMessage>)info.GetValue("_accumulatedITraceMessages", typeof(SynchronizedCollection<ITraceMessage>));
             _sessionTimer = (RelativeExecutionTimer) info.GetValue("_sessionTimer", typeof (RelativeExecutionTimer));
         }
 
@@ -55,22 +55,22 @@ namespace Glimpse.WCF
             get { return _sessionTimer; }
         }
 
-        public Glimpse.Core.Message.IMessage[] AccumulatedIMessages
+        public ITimedMessage[] AccumulatedITimedMessages
         {
-            get { return _accumulatedIMessages.ToArray(); }
+            get { return _accumulatedITimedMessages.ToArray(); }
         }
 
-        public Glimpse.Core.Message.ITraceMessage[] AccumulatedITraceMessages
+        public ITraceMessage[] AccumulatedITraceMessages
         {
             get { return _accumulatedITraceMessages.ToArray(); }
         }
 
-        public void AccumulateMessage(Glimpse.Core.Message.IMessage message)
+        public void AccumulateMessage(ITimedMessage message)
         {
-            _accumulatedIMessages.Add(message);
+            _accumulatedITimedMessages.Add(message);
         }
 
-        public void AccumulateMessage(Glimpse.Core.Message.ITraceMessage message)
+        public void AccumulateMessage(ITraceMessage message)
         {
             _accumulatedITraceMessages.Add(message);
         }
@@ -84,7 +84,7 @@ namespace Glimpse.WCF
             }
             else
             {
-                info.AddValue("_accumulatedIMessages", _accumulatedIMessages);
+                info.AddValue("_accumulatedITimedMessages", _accumulatedITimedMessages);
                 info.AddValue("_accumulatedITraceMessages", _accumulatedITraceMessages);
                 info.AddValue("_sessionTimer", _sessionTimer);
             }

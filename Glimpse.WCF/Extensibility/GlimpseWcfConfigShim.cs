@@ -13,8 +13,26 @@ namespace Glimpse.WCF.Extensibility
                 // initialize a fake config
                 var config = new GlimpseConfiguration(null, null, null, new NullLogger(), RuntimePolicy.On, null, null, null, null,
                                                       null, null, null, null, null, null, new GlimpseWcfMessageBroker(),
-                                                      null, () => GlimpseWcfContext.Current.SessionTimer, null);
+                                                      null, GetSessionTimer, null);
             }
+        }
+
+        public static IExecutionTimer GetSessionTimer()
+        {
+            if (GlimpseConfiguration.GetConfiguredTimerStrategy()() == null)
+            {
+                return GlimpseWcfContext.Current.SessionTimer;
+            }
+            return GlimpseConfiguration.GetConfiguredTimerStrategy()();
+        }
+
+        public static IMessageBroker GetBroker()
+        {
+            if (GlimpseConfiguration.GetConfiguredTimerStrategy()() == null)
+            {
+                return new GlimpseWcfMessageBroker();
+            }
+            return GlimpseConfiguration.GetConfiguredMessageBroker();
         }
 
         private class ShimServiceLocator : IServiceLocator
