@@ -7,6 +7,6 @@ namespace TestSite.WCF
     public interface ICompositeService
     {
         [OperationContract]
-        Task<int[]> DoWork();
+        int[] DoWork();
     }
 }

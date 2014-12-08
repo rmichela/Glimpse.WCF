@@ -7,15 +7,15 @@ namespace TestSite.WCF
 {
     public class CompositeService : ICompositeService
     {
-        public async Task<int[]> DoWork()
+        public int[] DoWork()
         {
             using (var client = new SimpleServiceClient())
             {
                 return (new int[]
                     {
-                        await client.DoWorkAsync(),
-                        await client.DoWorkAsync(),
-                        await client.DoWorkAsync()
+                        client.DoWork(),
+                        client.DoWork(),
+                        client.DoWork()
                     });
             }
         }
