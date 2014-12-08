@@ -7,10 +7,9 @@ namespace Glimpse.WCF.Extensibility
 {
     public class GlimpseWcfMessageBroker : IMessageBroker
     {
-        private readonly GlimpseWcfContext _context = GlimpseWcfContext.Current;
-
         public void Publish<T>(T message)
         {
+            GlimpseWcfContext _context = GlimpseWcfContext.Current;
             if (message is ITimelineMessage)
             {
                 _context.AccumulateMessage(new SerializableTimelineMessage(message as ITimelineMessage));

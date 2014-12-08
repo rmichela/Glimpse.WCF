@@ -10,7 +10,7 @@ namespace TestSite.WCF
         public int DoWork()
         {
             var r = new Random();
-            var v = Enumerable.Range(1, 10000).Select(x => r.Next());
+            var v = Enumerable.Range(1, 10000).Select(x => r.Next()).ToArray();
             var s = JsonConvert.SerializeObject(v);
 
             return s.Length;

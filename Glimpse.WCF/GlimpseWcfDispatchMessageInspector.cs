@@ -17,10 +17,12 @@ namespace Glimpse.WCF
         public void BeforeSendReply(ref System.ServiceModel.Channels.Message reply, object correlationState)
         {
             // Attach any accumulated timeline messages to the response header
+            var currentContext = GlimpseWcfContext.Current;
+
             var header = new GlimpseWcfMessageHeader
             {
-                CollectedITimedMessages = GlimpseWcfContext.Current.AccumulatedITimedMessages,
-                CollectedITraceMessages = GlimpseWcfContext.Current.AccumulatedITraceMessages
+                CollectedITimedMessages = currentContext.AccumulatedITimedMessages,
+                CollectedITraceMessages = currentContext.AccumulatedITraceMessages
             };
             reply.Headers.Add(MessageHeader.CreateHeader(GlimpseWcfMessageHeader.Name, GlimpseWcfMessageHeader.Namespace, header));
         }

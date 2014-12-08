@@ -20,12 +20,14 @@ namespace Glimpse.WCF
         private readonly SynchronizedCollection<ITimedMessage> _accumulatedITimedMessages;
         private readonly SynchronizedCollection<ITraceMessage> _accumulatedITraceMessages;
         private readonly RelativeExecutionTimer _sessionTimer;
+        private readonly Guid _guid;
 
         private GlimpseWcfContext()
         {
             _accumulatedITimedMessages = new SynchronizedCollection<ITimedMessage>();
             _accumulatedITraceMessages = new SynchronizedCollection<ITraceMessage>();
             _sessionTimer = new RelativeExecutionTimer();
+            _guid = Guid.NewGuid();
         }
 
         // Deserialization constructor
@@ -34,6 +36,7 @@ namespace Glimpse.WCF
             _accumulatedITimedMessages = (SynchronizedCollection<ITimedMessage>)info.GetValue("_accumulatedITimedMessages", typeof(SynchronizedCollection<ITimedMessage>));
             _accumulatedITraceMessages = (SynchronizedCollection<ITraceMessage>)info.GetValue("_accumulatedITraceMessages", typeof(SynchronizedCollection<ITraceMessage>));
             _sessionTimer = (RelativeExecutionTimer) info.GetValue("_sessionTimer", typeof (RelativeExecutionTimer));
+            _guid = (Guid) info.GetValue("_guid", typeof (Guid));
         }
 
         public static GlimpseWcfContext Current
@@ -75,6 +78,8 @@ namespace Glimpse.WCF
             _accumulatedITraceMessages.Add(message);
         }
 
+        public Guid Identifier { get { return _guid; } }
+
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             if (context.State == StreamingContextStates.CrossAppDomain)
@@ -87,6 +92,7 @@ namespace Glimpse.WCF
                 info.AddValue("_accumulatedITimedMessages", _accumulatedITimedMessages);
                 info.AddValue("_accumulatedITraceMessages", _accumulatedITraceMessages);
                 info.AddValue("_sessionTimer", _sessionTimer);
+                info.AddValue("_guid", _guid);
             }
         }
     }
