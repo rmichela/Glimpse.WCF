@@ -56,6 +56,7 @@
     <Compile Include="Extensibility\Fakes\FakeSerializer.cs" />
     <Compile Include="Extensibility\GlimpseWcfConfigShim.cs" />
     <Compile Include="Extensibility\RelativeExecutionTimer.cs" />
+    <Compile Include="GlimpseWcf.cs" />
     <Compile Include="GlimpseWcfDispatchMessageInspector.cs" />
     <Compile Include="GlimpseWcfEndpointBehavior.cs" />
     <Compile Include="Extensibility\GlimpseWcfMessageBroker.cs" />

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Linq;
 using System.Threading;
+using Newtonsoft.Json;
 
 namespace TestSite.WCF
 {
@@ -8,7 +10,10 @@ namespace TestSite.WCF
         public int DoWork()
         {
             var r = new Random();
-            return r.Next();
+            var v = Enumerable.Range(1, 10000).Select(x => r.Next());
+            var s = JsonConvert.SerializeObject(v);
+
+            return s.Length;
         }
     }
 }

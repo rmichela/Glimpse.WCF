@@ -6,7 +6,7 @@ using Glimpse.WCF.Extensibility.Fakes;
 
 namespace Glimpse.WCF.Extensibility
 {
-    public static class GlimpseWcfConfigShim
+    internal static class GlimpseWcfConfigShim
     {
         public static void Register()
         {
