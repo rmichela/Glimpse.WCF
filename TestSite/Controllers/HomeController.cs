@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using TestSite.CompositeService;
 using TestSite.SimpleService;
@@ -9,11 +10,17 @@ namespace TestSite.Controllers
     {
         public ActionResult Index()
         {
-            using (var client = new CompositeServiceClient())
-//            using (var client = new SimpleServiceClient())
+            var ints = new List<int>();
+            using (var client = new SimpleServiceClient())
             {
-                ViewData["number"] = string.Join( ", ", client.DoWork());
+                ints.Add(client.DoWork());
             }
+            using (var client = new CompositeServiceClient())
+            {
+                ints.AddRange(client.DoWork());
+            }
+
+            ViewData["number"] = string.Join(", ", ints);
             return View();
         }
     }
