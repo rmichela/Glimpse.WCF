@@ -12,17 +12,17 @@ namespace Glimpse.WCF.Extensibility
             GlimpseWcfContext _context = GlimpseWcfContext.Current;
             if (message is ITimelineMessage)
             {
-                _context.AccumulateMessage(new SerializableTimelineMessage(message as ITimelineMessage));
+                _context.AccumulateMessage(message as ITimelineMessage);
                 return;
             }
             if (message is ITraceMessage)
             {
-                _context.AccumulateMessage(new SerializableTraceMessage(message as ITraceMessage));
+                _context.AccumulateMessage(message as ITraceMessage);
                 return;
             }
             if (message is ITimedMessage)
             {
-                _context.AccumulateMessage(new SerializableTimedMessage(message as ITimedMessage));
+                _context.AccumulateMessage(message as ITimedMessage);
                 return;
             }
         }

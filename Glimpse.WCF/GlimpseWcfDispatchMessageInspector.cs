@@ -1,7 +1,10 @@
 ﻿using System.ServiceModel;
 using System.ServiceModel.Channels;
 using System.ServiceModel.Dispatcher;
+using System.Linq;
+using Glimpse.Core.Message;
 using Glimpse.WCF.Extensibility;
+using Glimpse.WCF.Message;
 
 namespace Glimpse.WCF
 {
@@ -21,10 +24,24 @@ namespace Glimpse.WCF
 
             var header = new GlimpseWcfMessageHeader
             {
-                CollectedITimedMessages = currentContext.AccumulatedITimedMessages,
-                CollectedITraceMessages = currentContext.AccumulatedITraceMessages
+                CollectedITimedMessages = currentContext.AccumulatedITimedMessages.Select(SerializeTimedMessages).ToArray(),
+                CollectedITraceMessages = currentContext.AccumulatedITraceMessages.Select(SerializeTraceMessage).ToArray()
             };
             reply.Headers.Add(MessageHeader.CreateHeader(GlimpseWcfMessageHeader.Name, GlimpseWcfMessageHeader.Namespace, header));
+        }
+
+        private ITimedMessage SerializeTimedMessages(ITimedMessage message)
+        {
+            if (message is ITimelineMessage)
+            {
+                return new SerializableTimelineMessage(message as ITimelineMessage);
+            }
+            return new SerializableTimedMessage(message);
+        }
+
+        private ITraceMessage SerializeTraceMessage(ITraceMessage message)
+        {
+            return new SerializableTraceMessage(message);
         }
     }
 }

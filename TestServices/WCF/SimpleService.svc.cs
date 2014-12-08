@@ -12,8 +12,9 @@ namespace TestSite.WCF
             var r = new Random();
             var v = Enumerable.Range(1, 10000).Select(x => r.Next()).ToArray();
             var s = JsonConvert.SerializeObject(v);
+            var a = JsonConvert.DeserializeObject<int[]>(s);
 
-            return s.Length;
+            return s.Length + a[0];
         }
     }
 }
