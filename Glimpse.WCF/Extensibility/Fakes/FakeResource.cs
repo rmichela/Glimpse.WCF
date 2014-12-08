@@ -9,6 +9,12 @@ namespace Glimpse.WCF.Extensibility.Fakes
 {
     class FakeResource : IResource
     {
+        public FakeResource()
+        {
+            Name = "XXX_FAKE";
+            Parameters = new List<ResourceParameterMetadata>();
+        }
+
         public IResourceResult Execute(IResourceContext context)
         {
             throw new NotImplementedException();
