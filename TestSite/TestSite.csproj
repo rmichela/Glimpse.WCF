@@ -206,7 +206,7 @@
     <Content Include="Scripts\knockout-3.2.0.debug.js" />
     <Content Include="Scripts\knockout-3.2.0.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Service References\CompositeService\CompositeService.wsdl" />
+    <None Include="Service References\CompositeService\CompositeService.wsdl" />
     <None Include="Service References\CompositeService\CompositeService3.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -222,7 +222,7 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <Content Include="Service References\CompositeService\CompositeService1.disco" />
+    <None Include="Service References\CompositeService\CompositeService1.disco" />
     <Content Include="Service References\SimpleService\SimpleService.disco" />
     <Content Include="Service References\SimpleService\configuration91.svcinfo" />
     <Content Include="Service References\SimpleService\configuration.svcinfo" />

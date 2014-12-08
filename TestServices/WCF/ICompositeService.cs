@@ -8,5 +8,8 @@ namespace TestSite.WCF
     {
         [OperationContract]
         int[] DoWork();
+
+        [OperationContract]
+        Task<int[]> DoWorkParallel();
     }
 }

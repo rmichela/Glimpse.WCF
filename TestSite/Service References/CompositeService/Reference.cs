@@ -20,6 +20,12 @@ namespace TestSite.CompositeService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICompositeService/DoWork", ReplyAction="http://tempuri.org/ICompositeService/DoWorkResponse")]
         System.Threading.Tasks.Task<int[]> DoWorkAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICompositeService/DoWorkParallel", ReplyAction="http://tempuri.org/ICompositeService/DoWorkParallelResponse")]
+        int[] DoWorkParallel();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICompositeService/DoWorkParallel", ReplyAction="http://tempuri.org/ICompositeService/DoWorkParallelResponse")]
+        System.Threading.Tasks.Task<int[]> DoWorkParallelAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -55,6 +61,14 @@ namespace TestSite.CompositeService {
         
         public System.Threading.Tasks.Task<int[]> DoWorkAsync() {
             return base.Channel.DoWorkAsync();
+        }
+        
+        public int[] DoWorkParallel() {
+            return base.Channel.DoWorkParallel();
+        }
+        
+        public System.Threading.Tasks.Task<int[]> DoWorkParallelAsync() {
+            return base.Channel.DoWorkParallelAsync();
         }
     }
 }

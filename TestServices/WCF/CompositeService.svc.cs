@@ -1,4 +1,5 @@
-﻿using GlimpseServices.SimpleService;
+﻿using System.Threading.Tasks;
+using GlimpseServices.SimpleService;
 
 namespace TestSite.WCF
 {
@@ -13,6 +14,19 @@ namespace TestSite.WCF
                         client.DoWork(),
                         client.DoWork(),
                         client.DoWork()
+                    });
+            }
+        }
+
+        public async Task<int[]> DoWorkParallel()
+        {
+            using (var client = new SimpleServiceClient())
+            {
+                return (new int[]
+                    {
+                        await client.DoWorkAsync(),
+                        await client.DoWorkAsync(),
+                        await client.DoWorkAsync()
                     });
             }
         }

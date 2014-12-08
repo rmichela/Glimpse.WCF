@@ -13,16 +13,35 @@
   <wsdl:message name="ICompositeService_DoWork_OutputMessage">
     <wsdl:part name="parameters" element="tns:DoWorkResponse" />
   </wsdl:message>
+  <wsdl:message name="ICompositeService_DoWorkParallel_InputMessage">
+    <wsdl:part name="parameters" element="tns:DoWorkParallel" />
+  </wsdl:message>
+  <wsdl:message name="ICompositeService_DoWorkParallel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DoWorkParallelResponse" />
+  </wsdl:message>
   <wsdl:portType name="ICompositeService">
     <wsdl:operation name="DoWork">
       <wsdl:input wsaw:Action="http://tempuri.org/ICompositeService/DoWork" message="tns:ICompositeService_DoWork_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICompositeService/DoWorkResponse" message="tns:ICompositeService_DoWork_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DoWorkParallel">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICompositeService/DoWorkParallel" message="tns:ICompositeService_DoWorkParallel_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICompositeService/DoWorkParallelResponse" message="tns:ICompositeService_DoWorkParallel_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_ICompositeService" type="tns:ICompositeService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="DoWork">
       <soap:operation soapAction="http://tempuri.org/ICompositeService/DoWork" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DoWorkParallel">
+      <soap:operation soapAction="http://tempuri.org/ICompositeService/DoWorkParallel" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
