@@ -19,14 +19,14 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost/GlimpseWcf/WCF/CompositeService.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost/GlimpseServices/WCF/CompositeService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="CompositeService.xsd" MetadataType="Schema" ID="de228d60-3b06-4570-b6aa-02b0614d4c8a" SourceId="1" SourceUrl="http://localhost/GlimpseWcf/WCF/CompositeService.svc?xsd=xsd0" />
-    <MetadataFile FileName="CompositeService2.xsd" MetadataType="Schema" ID="a72d949c-faa1-4cb4-b3a1-cf896cf139b9" SourceId="1" SourceUrl="http://localhost/GlimpseWcf/WCF/CompositeService.svc?xsd=xsd2" />
-    <MetadataFile FileName="CompositeService.disco" MetadataType="Disco" ID="7dd580a6-49e7-443f-ae3e-608e9233dbcd" SourceId="1" SourceUrl="http://localhost/GlimpseWcf/WCF/CompositeService.svc?disco" />
-    <MetadataFile FileName="SimpleService.wsdl" MetadataType="Wsdl" ID="d00cedbc-0d8d-4d4a-83d3-9cecc5cd1284" SourceId="1" SourceUrl="http://localhost/GlimpseWcf/WCF/CompositeService.svc?wsdl" />
-    <MetadataFile FileName="CompositeService1.xsd" MetadataType="Schema" ID="ea8668a0-25e0-4298-a15e-8e24a5c41acf" SourceId="1" SourceUrl="http://localhost/GlimpseWcf/WCF/CompositeService.svc?xsd=xsd1" />
+    <MetadataFile FileName="CompositeService3.xsd" MetadataType="Schema" ID="1082db03-a0d0-4f5b-862a-ed4047daa291" SourceId="1" SourceUrl="http://localhost/GlimpseServices/WCF/CompositeService.svc?xsd=xsd2" />
+    <MetadataFile FileName="CompositeService1.disco" MetadataType="Disco" ID="46bd648a-9016-48aa-b286-b76c831b3f82" SourceId="1" SourceUrl="http://localhost/GlimpseServices/WCF/CompositeService.svc?disco" />
+    <MetadataFile FileName="CompositeService.wsdl" MetadataType="Wsdl" ID="d8481aef-cb68-4806-96a9-6b78424d2358" SourceId="1" SourceUrl="http://localhost/GlimpseServices/WCF/CompositeService.svc?wsdl" />
+    <MetadataFile FileName="CompositeService31.xsd" MetadataType="Schema" ID="c442aaaf-c822-4e90-80ac-4f1f21377a5d" SourceId="1" SourceUrl="http://localhost/GlimpseServices/WCF/CompositeService.svc?xsd=xsd1" />
+    <MetadataFile FileName="CompositeService32.xsd" MetadataType="Schema" ID="9b530be1-6c67-43fb-b4cd-c39d63264245" SourceId="1" SourceUrl="http://localhost/GlimpseServices/WCF/CompositeService.svc?xsd=xsd0" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

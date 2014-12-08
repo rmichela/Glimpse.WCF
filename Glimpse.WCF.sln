@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestSite", "TestSite\TestSi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glimpse.WCF", "Glimpse.WCF\Glimpse.WCF.csproj", "{BB0EF180-3D8E-4104-A71B-31FDA185FBD7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestServices", "TestServices\TestServices.csproj", "{9B5CC165-6D58-4EA3-9C4D-D298B35C9D0C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{BB0EF180-3D8E-4104-A71B-31FDA185FBD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB0EF180-3D8E-4104-A71B-31FDA185FBD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB0EF180-3D8E-4104-A71B-31FDA185FBD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B5CC165-6D58-4EA3-9C4D-D298B35C9D0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B5CC165-6D58-4EA3-9C4D-D298B35C9D0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B5CC165-6D58-4EA3-9C4D-D298B35C9D0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B5CC165-6D58-4EA3-9C4D-D298B35C9D0C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

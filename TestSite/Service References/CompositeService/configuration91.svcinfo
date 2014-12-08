@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="cw9GRzspeKpd+59R0MgD3jtoUo8=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="x1m5hp9z+UpH+tN3QuJpAN9rBxA=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_ICompositeService">
       <properties>
@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpBinding_ICompositeService" contract="CompositeService.ICompositeService" bindingType="basicHttpBinding" address="http://localhost/GlimpseWcf/WCF/CompositeService.svc" bindingConfiguration="BasicHttpBinding_ICompositeService">
+    <endpoint name="BasicHttpBinding_ICompositeService" contract="CompositeService.ICompositeService" bindingType="basicHttpBinding" address="http://localhost/GlimpseServices/WCF/CompositeService.svc" bindingConfiguration="BasicHttpBinding_ICompositeService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost/GlimpseWcf/WCF/CompositeService.svc</serializedValue>
+          <serializedValue>http://localhost/GlimpseServices/WCF/CompositeService.svc</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

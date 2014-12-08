@@ -66,15 +66,22 @@ namespace Glimpse.WCF
             broker.Publish(message);
 
             // Publish any timeline messages the service is reporting
-            var glimpseWcfHeader = reply.Headers.GetHeader<GlimpseWcfMessageHeader>(GlimpseWcfMessageHeader.Name, GlimpseWcfMessageHeader.Namespace);
-            foreach (ITimedMessage headerMessage in glimpseWcfHeader.CollectedITimedMessages)
+            try
             {
-                headerMessage.Offset += message.Offset;
-                broker.Publish(headerMessage);
+                var glimpseWcfHeader = reply.Headers.GetHeader<GlimpseWcfMessageHeader>(GlimpseWcfMessageHeader.Name, GlimpseWcfMessageHeader.Namespace);
+                foreach (ITimedMessage headerMessage in glimpseWcfHeader.CollectedITimedMessages)
+                {
+                    headerMessage.Offset += message.Offset;
+                    broker.Publish(headerMessage);
+                }
+                foreach (ITraceMessage traceMessage in glimpseWcfHeader.CollectedITraceMessages)
+                {
+                    broker.Publish(traceMessage);
+                }
             }
-            foreach (ITraceMessage traceMessage in glimpseWcfHeader.CollectedITraceMessages)
+            catch (MessageHeaderException e)
             {
-                broker.Publish(traceMessage);
+                // No header found
             }
         }
 
