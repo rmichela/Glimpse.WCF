@@ -46,6 +46,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensibility\Fakes\FakeFrameworkProvider.cs" />
+    <Compile Include="Extensibility\Fakes\FakeHtmlEncoder.cs" />
+    <Compile Include="Extensibility\Fakes\FakeLogger.cs" />
+    <Compile Include="Extensibility\Fakes\FakePersistenceStore.cs" />
+    <Compile Include="Extensibility\Fakes\FakeProxyFactory.cs" />
+    <Compile Include="Extensibility\Fakes\FakeResource.cs" />
+    <Compile Include="Extensibility\Fakes\FakeResourceEndpointConfiguration.cs" />
+    <Compile Include="Extensibility\Fakes\FakeSerializer.cs" />
     <Compile Include="Extensibility\GlimpseWcfConfigShim.cs" />
     <Compile Include="Extensibility\RelativeExecutionTimer.cs" />
     <Compile Include="GlimpseWcfDispatchMessageInspector.cs" />

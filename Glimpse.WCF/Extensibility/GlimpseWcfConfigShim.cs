@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Glimpse.Core.Extensibility;
 using Glimpse.Core.Framework;
+using Glimpse.WCF.Extensibility.Fakes;
 
 namespace Glimpse.WCF.Extensibility
 {
@@ -11,15 +13,32 @@ namespace Glimpse.WCF.Extensibility
             if (GlimpseConfiguration.GetConfiguredMessageBroker() == null)
             {
                 // initialize a fake config
-                var config = new GlimpseConfiguration(null, null, null, new NullLogger(), RuntimePolicy.On, null, null, null, null,
-                                                      null, null, null, null, null, null, new GlimpseWcfMessageBroker(),
-                                                      null, GetSessionTimer, null);
+                var config = new GlimpseConfiguration(
+                    new FakeFrameworkProvider(), 
+                    new FakeResourceEndpointConfiguration(), 
+                    new Collection<IClientScript>(), 
+                    new FakeLogger(), 
+                    RuntimePolicy.On, 
+                    new FakeHtmlEncoder(), 
+                    new FakePersistenceStore(), 
+                    new Collection<IInspector>(), 
+                    new Collection<IResource>(), 
+                    new FakeSerializer(), 
+                    new Collection<ITab>(), 
+                    new Collection<IDisplay>(), 
+                    new Collection<IRuntimePolicy>(), 
+                    new FakeResource(), 
+                    new FakeProxyFactory(), 
+                    new GlimpseWcfMessageBroker(),
+                    string.Empty, 
+                    GetSessionTimer, 
+                    () => RuntimePolicy.On);
             }
         }
 
         public static IExecutionTimer GetSessionTimer()
         {
-            if (GlimpseConfiguration.GetConfiguredTimerStrategy()() == null)
+            if (GlimpseConfiguration.GetLogger() is FakeLogger)
             {
                 return GlimpseWcfContext.Current.SessionTimer;
             }
@@ -28,7 +47,7 @@ namespace Glimpse.WCF.Extensibility
 
         public static IMessageBroker GetBroker()
         {
-            if (GlimpseConfiguration.GetConfiguredTimerStrategy()() == null)
+            if (GlimpseConfiguration.GetLogger() is FakeLogger)
             {
                 return new GlimpseWcfMessageBroker();
             }
